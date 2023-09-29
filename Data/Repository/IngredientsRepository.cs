@@ -33,7 +33,7 @@ namespace RecipeBook.Data.Repository
         {
             try
             {
-                if (value.Id > 0 && value.Id != null)
+                if (value.Id != null)
                 {
                     var checkForExisting = _db.Ingredients.FirstOrDefault(x => x.Id == value.Id);
                     if (checkForExisting == null)

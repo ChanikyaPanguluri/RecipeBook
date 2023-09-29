@@ -12,8 +12,8 @@ namespace RecipeBook.Models
         public string Name { get; set; }
         public int Count { get; set; }
 
-        public int RecipeId { get; set; }
-        public  Recipe Recipe { get; set; }
+        public Nullable<int> RecipeId { get; set; }
+        public  Recipe? Recipe { get; set; }
         
     }
 }
