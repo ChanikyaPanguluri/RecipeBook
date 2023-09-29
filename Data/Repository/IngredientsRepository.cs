@@ -35,11 +35,18 @@ namespace RecipeBook.Data.Repository
             {
                 if (value.Id != null)
                 {
-                    var checkForExisting = _db.Ingredients.FirstOrDefault(x => x.Id == value.Id);
+                    var checkForExisting = _db.Ingredients.FirstOrDefault(x => x.Name == value.Name);
                     if (checkForExisting == null)
                     {
                         _db.Ingredients.Add(value);
                         var res = _db.SaveChanges();
+                        return res;
+                    }
+                    else
+                    {
+                        checkForExisting.Count += value.Count;
+                        _db.Ingredients.Update(checkForExisting);
+                        var res=_db.SaveChanges();
                         return res;
                     }
                 }
@@ -55,8 +62,8 @@ namespace RecipeBook.Data.Repository
         {
             try
             {
-                var existingRecord = _db.Ingredients.FirstOrDefault(x => x.Id == ing.Id);
-                if (existingRecord != null)
+                //var existingRecord = _db.Ingredients.FirstOrDefault(x => x.Id == ing.Id);
+                if (ing.Id != null)
                 {
                     _db.Ingredients.Update(ing);
                     var res = _db.SaveChanges();
@@ -89,6 +96,7 @@ namespace RecipeBook.Data.Repository
         {
             try
             {
+                //var ingredient= GetAllIngredients().FirstOrDefault(x=>x.RecipeId==);
                 var existingRecord = _db.Ingredients.Find(id);
                 if (existingRecord != null)
                 {
