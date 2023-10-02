@@ -14,8 +14,11 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    }
+) ;
 
 builder.Services.AddScoped<IIngredientsRepository, IngredientsRepository>();
 builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();

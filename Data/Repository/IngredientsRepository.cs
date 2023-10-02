@@ -62,7 +62,6 @@ namespace RecipeBook.Data.Repository
         {
             try
             {
-                //var existingRecord = _db.Ingredients.FirstOrDefault(x => x.Id == ing.Id);
                 if (ing.Id != null)
                 {
                     _db.Ingredients.Update(ing);
@@ -96,11 +95,10 @@ namespace RecipeBook.Data.Repository
         {
             try
             {
-                //var ingredient= GetAllIngredients().FirstOrDefault(x=>x.RecipeId==);
-                var existingRecord = _db.Ingredients.Find(id);
-                if (existingRecord != null)
+                var ingredient= GetAllIngredients().FirstOrDefault(x=>x.Id==id);
+                if (ingredient != null)
                 {
-                    _db.Ingredients.Remove(existingRecord);
+                    _db.Ingredients.Remove(ingredient);
                     var res = _db.SaveChanges();
                     return res;
                 }

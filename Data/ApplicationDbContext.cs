@@ -18,7 +18,7 @@ namespace RecipeBook.Data
                 .HasOne(_ => _.Recipe)
                 .WithMany(a => a.Ingredients)
                 .HasForeignKey(a => a.RecipeId);
-    
-      }
+
+        }
     }
 }
